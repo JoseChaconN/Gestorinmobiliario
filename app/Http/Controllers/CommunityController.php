@@ -44,7 +44,7 @@ class CommunityController extends Controller
         ]);
         try {
             DB::transaction(function () use ($request,&$id) {
-                Community::create([
+                $community = Community::create([
                     'name' => $request->input('name'),
                     'phone' => $request->input('phone'),
                     'region_id' => $request->input('region_id'),
@@ -55,6 +55,7 @@ class CommunityController extends Controller
                     'email' => $request->input('email'),
                     'obs' => $request->input('obs'),
                 ]);
+                $id = $community->id;
             });
             return redirect()->route('community.edit',$id)
             ->with('notification_type', 'success')
