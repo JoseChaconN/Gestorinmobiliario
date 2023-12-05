@@ -55,7 +55,7 @@ class CommunityController extends Controller
                     'email' => $request->input('email'),
                     'obs' => $request->input('obs'),
                 ]);
-                $id = $community->id;
+                $id = $community->id; 
             });
             return redirect()->route('community.edit',$id)
             ->with('notification_type', 'success')
